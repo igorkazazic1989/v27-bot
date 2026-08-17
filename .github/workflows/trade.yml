@@ -1,0 +1,21 @@
+name: V27 NVDA Auto Trader
+on:
+  schedule:
+    - cron: '35 13 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install alpaca-py pandas
+      - name: Run bot
+        env:
+          APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
+          APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
+          APCA_API_BASE_URL: https://paper-api.alpaca.markets
+        run: python V27-Full-Auto-IEX.py --symbol NVDA --live --notional 10000
