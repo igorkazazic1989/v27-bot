@@ -2,7 +2,7 @@ name: V29 ASI Self Improving Trader
 
 on:
   schedule:
-    - cron: '35 13 * * 1-5'
+    - cron: '0 20 * * 1-5'  # 20:00 UTC = 22:00 svensk, efter USA stängt
   workflow_dispatch:
 
 jobs:
